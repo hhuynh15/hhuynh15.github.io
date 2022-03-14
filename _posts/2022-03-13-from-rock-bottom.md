@@ -9,7 +9,7 @@ tags: [Blogging, Personal]
 math: true
 mermaid: true
 image: 
-  src: /YCF4dh6.png
+  src: #/YCF4dh6.png
   width: 700
   height: 393
 ---
