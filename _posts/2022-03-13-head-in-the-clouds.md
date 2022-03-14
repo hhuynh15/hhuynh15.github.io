@@ -9,7 +9,9 @@ tags: [Blogging, Cloud]
 math: true
 mermaid: true
 image: 
-  src: /pRr0rm2.png/commons/devices-mockup.png
+  src: /a/Sybh0CC/pRr0rm2.png
   width: 700
   height: 393
 ---
+
+This post is to test what it will look like.
