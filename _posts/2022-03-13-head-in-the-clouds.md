@@ -9,7 +9,7 @@ tags: [Blogging, Cloud]
 math: true
 mermaid: true
 image: 
-  src: /a/Sybh0CC/pRr0rm2.png
+  src: /YCF4dh6.png
   width: 700
   height: 393
 ---
