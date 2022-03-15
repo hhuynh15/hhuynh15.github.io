@@ -5,11 +5,29 @@ author:
   link: https://github.com/hhuynh15
 date: 2022-03-13 20:10:00 +0800
 categories: [Blogging]
-tags: [Blogging, Cloud]
-math: true
-mermaid: true
+tags: [Blog, Cloud]
 image: 
   src: /YCF4dh6.png
   width: 700
   height: 393
+
+#toc: false #Enables table of contents
+#math: false #Enables Mathematics
+#mermaid: false #Enables Mermaid (chart diagram tool: https://github.com/mermaid-js/mermaid)
+#comments: false #Enables comments
+#pin: false #pins a post to the top of the home page
 ---
+
+#`inline code`
+
+#`/path/to/a/file.extend`{: .filepath} #filepath highlight
+
+#```
+#code block
+#```
+
+#```{language}
+#code block
+#```
+
+
