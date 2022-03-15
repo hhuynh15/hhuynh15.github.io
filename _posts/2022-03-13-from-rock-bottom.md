@@ -3,7 +3,7 @@ title: From Rock Bottom
 author:
   name: Hieu Huynh
   link: https://github.com/hhuynh15
-date: 2022-03-13 20:10:00 +1000
+date: 2022-03-13 20:10:00 -0700
 categories: [Blogging]
 tags: [Blog, Personal]
 math: true
