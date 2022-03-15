@@ -23,10 +23,10 @@ timezone: America/Los_Angeles
 
 title: What a Blog                          # the main title
 
-tagline: Instructional guides and miscellaneous life stuff   # it will display as the sub-title
+tagline: Instructional guides and miscellaneous life stuff.   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
+  Instructional guides and miscellaneous life stuff.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://hhuynh15.github.io/'
@@ -44,11 +44,11 @@ social:
   email: hhuynh.dev@gmail.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username      # change to your twitter homepage
-    - https://github.com/username       # change to your github homepage
+    - https://twitter.com/hubris_maximus      # change to your twitter homepage
+    - https://github.com/hhuynh15       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    - https://www.linkedin.com/in/hieu-huynh-074007211
 
 google_site_verification:               # fill in to your verification string
 
@@ -73,7 +73,7 @@ google_analytics:
 #     light  - Use the light color scheme
 #     dark   - Use the dark color scheme
 #
-theme_mode:   dark
+theme_mode:   light
 
 # The CDN endpoint for images.
 # Notice that once it is assigned, the CDN url

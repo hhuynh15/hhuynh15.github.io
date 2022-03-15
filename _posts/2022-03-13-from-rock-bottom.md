@@ -3,11 +3,10 @@ title: From Rock Bottom
 author:
   name: Hieu Huynh
   link: https://github.com/hhuynh15
-date: 2022-03-13 20:10:00 +0800
+date: 2022-03-13 20:10:00 +0000
 categories: [Blogging]
-tags: [Blogging, Personal]
+tags: [Blog, Personal]
 math: true
-mermaid: true
 image: 
   src: #/YCF4dh6.png
   width: 700
