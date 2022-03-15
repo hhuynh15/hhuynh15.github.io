@@ -117,13 +117,6 @@ assets:
 
 paginate: 10
 
-# RSS Feed plugin
-plugins:
-  - jekyll-feed
-title: What a Blog
-description: Instructional guides and miscellaneous life stuff
-author: Hieu Huynh
-
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:
