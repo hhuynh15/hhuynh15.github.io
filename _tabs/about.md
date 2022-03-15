@@ -21,3 +21,39 @@ Hi, I'm Hieu Huynh and I've made this blog as a way for me to share my passion f
 - Handle initial response to incoming calls, tickets and event response for company clients.
 
 <h4> Volunteer IT Specialist @ Bồ Đề Phật Quốc (Buddhist Temple) | Jun 2015 - Present </h4>
+- Installation and maintenance of building’s network infrastructure and PoE security surveillance system.
+- Setup and configuration of computer lab from donated hardware. Trained users on use of PC lab equipment.
+- Support and problem resolution for computer and network related issues.
+- Creation of online distribution system for lecture content online through video on demand.
+
+## Education
+---
+
+- CompTIA A+ (2021)
+- CompTIA Network+ (2022)
+- CompTIA Linux+ (In Progress)
+- AWS Cerfified Cloud Practicioner (In Progress)
+- Rosemead High School Diploma (2012)
+
+## Projects
+---
+
+<h4> Ubuntu 20.04 Server | Hands-On Home Lab </h4>
+- Installed and setup Linux server running multiple game servers on individual docker containers.
+- Installed and configured server to be a network attached storage media server.
+- Configured Ubuntu server 20.04 domain settings, server name, TCP/IP settings, ad-filtered DNS, and SSH.
+
+## Skills & Interests
+---
+
+<h4> Skills </h4>
+Ticketing Systems ❖ Networking ❖ Linux ❖ Customer Service ❖ Analytical & Critical Thinking ❖ Complaint & Conflict Resolution ❖ Technical Troubleshooting ❖ Research & Analysis ❖ Time Management ❖ Multitasking ❖ Working Knowledge of Python, and Java ❖ Planning and Coordination ❖ Teamwork and Leadership ❖ Public Communication and Orientation ❖ Word ❖ Excel ❖ Powerpoint
+
+<h4> Software </h4>
+Bash ❖ Zoom ❖ Slack ❖ MS365 Office 2016 ❖ PuTTY ❖ Rufus ❖ Oracle VM ❖ Remote Desktop
+
+<h4> Platforms </h4>
+Windows 7/8/10 Desktop ❖ Ubuntu Desktop/Server ❖ CentOS ❖ Android ❖ ProxMox
+
+<h4> Interests </h4>
+Non-Fiction Books ❖ Social Causes: Healthcare & Housing ❖ Volunteerism ❖ Animals/Pets ❖ Video Games ❖ Political Activism ❖ Programming ❖ Discord Bot Plugin Development (Python) ❖ Rust Game Plugin Development (C#) ❖ Minecraft Plugin Development (Java) ❖ Server Hosting (Linux)
