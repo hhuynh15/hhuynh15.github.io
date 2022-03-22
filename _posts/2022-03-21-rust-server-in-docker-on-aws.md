@@ -13,18 +13,22 @@ image:
 ---
 
 ## Introduction
+---
 
 This guide will teach you how to run your own Rust server on the cloud. This guide assumes you already have some Linux knowledge and that you will be able to manage your server on your own after everything is set up. This is made for people who are not familiar with Docker or cloud services. Although we will be using AWS for this guide, the instructions here can be applied to any cloud service provider or even on your own dedicated server.
 
 ## What's Docker and why Docker?
+---
 
 Docker is a system for running services such as apps in a containerized setting. This will give you the freedom to control the resources used by your servers and will also make it easier for you to expand to multiple servers in the future if you so wish. It will also allow you to freely move your server between devices and restore from backups. If you wish to learn more about Docker and how it works you can read more from [here](https://www.docker.com/resources/what-container/).
 
 ## Pre-setup
+---
 
 The only thing you will need is an AWS account. If you don't have one yet you can make one [here](https://signin.aws.amazon.com/signin?redirect_uri=https%3A%2F%2Fportal.aws.amazon.com%2Fbilling%2Fsignup%2Fresume&client_id=signup&code_challenge_method=SHA-256&code_challenge=QJtklNBj78wdUxQgKDGEbr12Unt45QcxmWE-rLR_Rcs).
 
 ## Launching a Cloud Instance
+---
 
 - Once logged into your AWS account you can use the search bar at the top of the page and search for "EC2". 
 - Select the first option and it will take you to the EC2 page. 
@@ -42,6 +46,7 @@ The only thing you will need is an AWS account. If you don't have one yet you ca
 - You might have to wait several minutes before your instance is launched and is accessible.
 
 ## Installing Docker and Launching Your Rust Server
+---
 
 - In order to access your new instance you will need to use the key pair you created and downloaded earlier.
 - You will need to modify the permissions of the private key so that you can use it.
@@ -105,6 +110,7 @@ sudo docker help
 ```
 
 ## Configuring your Rust Server
+---
 
 - First create your server configuration file:
 
@@ -149,6 +155,7 @@ The ``--env file`` flag simply loads our variables from the file we set up earli
 You should now have a full functioning, fully configured server setup. All that's left now is to make sure it automatically restarted in case it crashes, or the host system is restarted.
 
 ## Automatic Startup
+---
 
 - Create a new file in `/etc/init/rust-server.conf` and paste the following in it:
 
@@ -181,6 +188,7 @@ service rust-server stop
 service rust-server status
 ```
 ## Controlling Resources
+---
 
 It's important to control how much resource your server uses as one process overconsuming resources can end up causing other programs to crash when they hit their limit. And Rust is known to be a very resource heavy application. Another thing is that Rust (or more accurately Unity) is known to crash when using more than 16GB of memory. Docker can solve this issue easily by adding the following flag to your `docker run` command: `-m 16g`. This will limit the maximum amount of memory your container can consome to 16GB.
 
@@ -189,6 +197,7 @@ To limit your CPU utilization you can add the `--cpus="2.0"` flag when running y
 Remember to add all Docker arguments before the image name (in this case `didstopia/rust-server`) otherwise they'll get ignored.
 
 ## Useful Commands
+---
 
 To access the server console, we can do so with this command:
 
@@ -236,5 +245,6 @@ env
 
 
 ## Final Notes
+---
 
 I am still learning the Linux ecosystem and Docker so I will continually update this guide as I find better ways to launch and manage applications. If you find anything I've said here to be erroneous or if there is a better way to do things. Feel free to contact me and let me know! I would love to hear any type of feedback.
