@@ -140,7 +140,7 @@ We have added the `-d` flag, which will detach or daemonize the process, so that
 
 The `-p` flag will bind our local ports to the container ports, which will enable us to connect to the server from outside our network.
 
-The `-v` flag is where the magic happens, as the `-v` flag translates to volume. Meaning it will mount a volume on the local filesystem inside the container. The first part is the host path (/rust in this case), and the second part is the container path (/steamcmd/rust, which is always the same).
+The `-v` flag is where the magic happens, as the `-v` flag translates to volume. Meaning it will mount a volume on the local filesystem inside the container. The first part is the host path (`/rust` in this case), and the second part is the container path (`/steamcmd/rust`, which is always the same).
 
 Since Docker containers aren't persistent (they can't be permanently modified, changes aren't saved and so on), using a volume will now store both the Rust installation data, as well as the server data (level, users, blueprints, logfiles). Storing the Rust installation data on the host system means that when the container is restarted, it won't have to download the entire server again, but it can still update it if necessary.
 
@@ -225,6 +225,15 @@ To monitor your resource usage for each container:
 ```bash
 sudo docker stats
 ```
+
+You can connect to your docker container and manipulate the environment variables like so:
+
+```bash
+sudo docker exec -it rust-server bash
+
+env
+```
+
 
 ## Final Notes
 
