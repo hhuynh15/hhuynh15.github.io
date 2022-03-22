@@ -146,6 +146,48 @@ Since Docker containers aren't persistent (they can't be permanently modified, c
 
 The ``--env file`` flag simply loads our variables from the file we set up earlier.
 
+You should now have a full functioning, fully configured server setup. All that's left now is to make sure it automatically restarted in case it crashes, or the host system is restarted.
+
+## Automatic Startup
+
+- Create a new file in `/etc/init/rust-server.conf` and paste the following in it:
+
+```bash
+description "Rust server container"
+author "Me"
+start on filesystem and started docker
+stop on runlevel [!2345]
+respawn
+script
+    /usr/bin/docker rm -f rust-server 2>/dev/null || true
+    /usr/bin/docker pull didstopia/rust-server
+    /usr/bin/docker run -p 28015:28015 -p 28015:28015/udp -p 28016:28016 -p 8080:8080 --name rust-server --env-file /rust.env -v /rust:/steamcmd/rust --rm didstopia/rust-server
+end script
+pre-stop script
+    /usr/bin/docker stop rust-server
+    /usr/bin/docker rm -f rust-server 2>/dev/null || true
+end script
+```
+
+Note that this particular startup script uses the --rmflag, which will destroy the container once it's stopped. This allows for clean starting/stopping of the server, as the container name will always be available this way. We're also forcibly destroying the container both when stopping and starting the server, just in case anything goes wrong.
+
+The log file exists at /var/log/upstart/rust-server.log, and you should check it for errors if the server doesn't seem to be starting. This is usually just a naming conflict, which can be resolved by destroying the container using docker rm -f rust-server and restarting.
+
+You should now be able to start and stop the server, as well as check the status of it, by running any of the following commands:
+
+```bash
+service rust-server start
+service rust-server stop
+service rust-server status
+```
+## Controlling Resources
+
+It's important to control how much resource your server uses as one process overconsuming resources can end up causing other programs to crash when they hit their limit. And Rust is known to be a very resource heavy application. Another thing is that Rust (or more accurately Unity) is known to crash when using more than 16GB of memory. Docker can solve this issue easily by adding the following flag to your `docker run` command: `-m 16g`. This will limit the maximum amount of memory your container can consome to 16GB.
+
+To limit your CPU utilization you can add the `--cpus="2.0"` flag when running your container. The `"2.0"` in the flag represents the amount of CPUs or cores you are alloting to that container.
+
+Remember to add all Docker arguments before the image name (in this case `didstopia/rust-server`) otherwise they'll get ignored.
+
 ## Useful Commands
 
 To access the server console, we can do so with this command:
@@ -171,3 +213,19 @@ If we get an error saying that a server with the name *rust-server* already exis
 ```bash
 sudo docker rm -f rust-server
 ```
+
+To send an RCON command to your server, you can use the following:
+
+```bash
+sudo docker exec rust-server rcon {command}
+```
+
+To monitor your resource usage for each container:
+
+```bash
+sudo docker stats
+```
+
+## Final Notes
+
+I am still learning the Linux ecosystem and Docker so I will continually update this guide as I find better ways to launch and manage the server. If you find anything I've said here to be erroneous or if there is a better way to do things. Feel free to contact me and let me know! I would love to hear any type of feedback.
