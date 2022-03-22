@@ -146,6 +146,8 @@ Since Docker containers aren't persistent (they can't be permanently modified, c
 
 The ``--env file`` flag simply loads our variables from the file we set up earlier.
 
+## Useful Commands
+
 To access the server console, we can do so with this command:
 
 ```bash
