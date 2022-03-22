@@ -14,7 +14,7 @@ image:
 
 ## Introduction
 
-This guide will teach you how to run your own Rust server on the cloud. This guide assumes you already have some Linux knowledge and that you will be able to manage your server on your own after everything is set up. This is made for people who are not familiar with Docker or cloud services. Although we will be using AWS for this guide, the instructions here can be applied to any cloud service provider or even on your own on dedicated server.
+This guide will teach you how to run your own Rust server on the cloud. This guide assumes you already have some Linux knowledge and that you will be able to manage your server on your own after everything is set up. This is made for people who are not familiar with Docker or cloud services. Although we will be using AWS for this guide, the instructions here can be applied to any cloud service provider or even on your own dedicated server.
 
 ## What's Docker and why Docker?
 
@@ -208,7 +208,7 @@ To update to the lastest image by pulling from Docker Hub:
 sudo docker pull didstopia/rust-server
 ```
 
-If we get an error saying that a server with the name *rust-server* already exists, we can remove the container by running:
+If you get an error saying that a server with the name *rust-server* already exists, we can remove the container by running:
 
 ```bash
 sudo docker rm -f rust-server
@@ -228,4 +228,4 @@ sudo docker stats
 
 ## Final Notes
 
-I am still learning the Linux ecosystem and Docker so I will continually update this guide as I find better ways to launch and manage the server. If you find anything I've said here to be erroneous or if there is a better way to do things. Feel free to contact me and let me know! I would love to hear any type of feedback.
+I am still learning the Linux ecosystem and Docker so I will continually update this guide as I find better ways to launch and manage applications. If you find anything I've said here to be erroneous or if there is a better way to do things. Feel free to contact me and let me know! I would love to hear any type of feedback.
