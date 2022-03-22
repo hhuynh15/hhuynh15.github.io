@@ -4,9 +4,8 @@ author:
   name: Hieu Huynh
   link: https://github.com/hhuynh15
 date: 2022-03-14 20:10:00 -0700
-categories: [Blogging, Personal]
-tags: [Blog, Personal, Cloud]
-math: true
+categories: [Blogging]
+tags: [Personal, Cloud]
 image: 
   src: /YCF4dh6.png
   width: 700
