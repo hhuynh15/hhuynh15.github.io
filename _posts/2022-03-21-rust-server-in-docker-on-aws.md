@@ -169,9 +169,9 @@ pre-stop script
 end script
 ```
 
-Note that this particular startup script uses the --rmflag, which will destroy the container once it's stopped. This allows for clean starting/stopping of the server, as the container name will always be available this way. We're also forcibly destroying the container both when stopping and starting the server, just in case anything goes wrong.
+Note that this particular startup script uses the `--rmflag`, which will destroy the container once it's stopped. This allows for clean starting/stopping of the server, as the container name will always be available this way. We're also forcibly destroying the container both when stopping and starting the server, just in case anything goes wrong.
 
-The log file exists at /var/log/upstart/rust-server.log, and you should check it for errors if the server doesn't seem to be starting. This is usually just a naming conflict, which can be resolved by destroying the container using docker rm -f rust-server and restarting.
+The log file exists at `/var/log/upstart/rust-server.log`, and you should check it for errors if the server doesn't seem to be starting. This is usually just a naming conflict, which can be resolved by destroying the container using `docker rm -f rust-server` and restarting.
 
 You should now be able to start and stop the server, as well as check the status of it, by running any of the following commands:
 
@@ -184,7 +184,7 @@ service rust-server status
 
 It's important to control how much resource your server uses as one process overconsuming resources can end up causing other programs to crash when they hit their limit. And Rust is known to be a very resource heavy application. Another thing is that Rust (or more accurately Unity) is known to crash when using more than 16GB of memory. Docker can solve this issue easily by adding the following flag to your `docker run` command: `-m 16g`. This will limit the maximum amount of memory your container can consome to 16GB.
 
-To limit your CPU utilization you can add the `--cpus="2.0"` flag when running your container. The `"2.0"` in the flag represents the amount of CPUs or cores you are alloting to that container.
+To limit your CPU utilization you can add the `--cpus="2.0"` flag when running your container. The `"2.0"` in the flag represents the amount of CPUs you are alloting to that container. You can also use decimal values like `--cpus="0.5"` or `--cpus="1.5"`.
 
 Remember to add all Docker arguments before the image name (in this case `didstopia/rust-server`) otherwise they'll get ignored.
 
