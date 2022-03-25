@@ -196,6 +196,19 @@ To limit your CPU utilization you can add the `--cpus="2.0"` flag when running y
 
 Remember to add all Docker arguments before the image name (in this case `didstopia/rust-server`) otherwise they'll get ignored.
 
+## Using Custom Maps
+
+If you wish to use a custom map for your server it is quite simple to do so. First, you will need to remove or comment out the `RUST_SERVER_SEED=` argument and the `RUST_SERVER_WORLDSIZE=` argument. Next, you will need to follow this [guide](https://shockbyte.com/billing/knowledgebase/190/How-to-Add-a-Custom-Map-to-Your-Rust-Server.html) to install the necessary dependencies and then to also obtain a direct download URL. The only difference between the standard way of using a custom map and using one for your containerized Rust server, is that instead of editing your `server.cfg` file you will be editing your environment variables file. In your environment variables file under `RUST_SERVER_STARTUP_ARGUMENTS=` add the following starting parameter: `-levelurl "{direct download link for your custom map}"`. For example, this is how my file looks:
+
+```bash
+RUST_SERVER_STARTUP_ARGUMENTS=-batchmode -load +server.secure 1 -levelurl "https://www.dropbox.com/s/cgbu3o0tngp9qgt/RedSandsCustom.map?dl=1"
+RUST_SERVER_IDENTITY=rustserver
+#RUST_SERVER_SEED=12345
+RUST_SERVER_NAME=My Containerized Rust Server on AWS!
+RUST_SERVER_DESCRIPTION=I made this!
+RUST_RCON_PASSWORD=CHANGEME
+```
+
 ## Useful Commands
 ---
 
@@ -235,12 +248,16 @@ To monitor your resource usage for each container:
 sudo docker stats
 ```
 
-You can connect to your docker container and manipulate the environment variables like so:
+You can find the container-id by executing the following command:
 
 ```bash
-sudo docker exec -it rust-server bash
+sudo docker inspect [container-name] | grep "Id"
+```
 
-env
+To change an existing container's environment variables you will have to edit the following file:
+
+```bash
+sudo vim /var/lib/docker/containers/{container-id}/config/json
 ```
 
 
