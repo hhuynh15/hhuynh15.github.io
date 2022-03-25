@@ -187,6 +187,7 @@ service rust-server start
 service rust-server stop
 service rust-server status
 ```
+
 ## Controlling Resources
 ---
 
@@ -248,18 +249,17 @@ To monitor your resource usage for each container:
 sudo docker stats
 ```
 
-You can find the container-id by executing the following command:
-
-```bash
-sudo docker inspect [container-name] | grep "Id"
-```
-
 To change an existing container's environment variables you will have to edit the following file:
 
 ```bash
 sudo vim /var/lib/docker/containers/{container-id}/config/json
 ```
 
+You can find the container-id by executing the following command:
+
+```bash
+sudo docker inspect [container-name] | grep "Id"
+```
 
 ## Final Notes
 ---
