@@ -252,7 +252,7 @@ sudo docker stats
 To change an existing container's environment variables you will have to edit the following file:
 
 ```bash
-sudo vim /var/lib/docker/containers/{container-id}/config/json
+sudo vim /var/lib/docker/containers/{container-id}/config.json
 ```
 
 You can find the container-id by executing the following command:
