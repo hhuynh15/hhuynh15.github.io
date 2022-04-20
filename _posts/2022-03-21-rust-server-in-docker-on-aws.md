@@ -157,30 +157,39 @@ You should now have a full functioning, fully configured server setup. All that'
 ## Automatic Startup
 ---
 
-- Create a new file in `/etc/init/rust-server.conf` and paste the following in it:
+- Create a new file in `/usr/local/sbin/docker_startup.service` and paste the following in it:
 
 ```bash
-description "Rust server container"
-author "Me"
-start on filesystem and started docker
-stop on runlevel [!2345]
-respawn
-script
-    /usr/bin/docker rm -f rust-server 2>/dev/null || true
-    /usr/bin/docker pull didstopia/rust-server
-    /usr/bin/docker run -p 28015:28015 -p 28015:28015/udp -p 28016:28016 -p 8080:8080 --name rust-server --env-file /rust.env -v /rust:/steamcmd/rust --rm didstopia/rust-server
-end script
-pre-stop script
-    /usr/bin/docker stop rust-server
-    /usr/bin/docker rm -f rust-server 2>/dev/null || true
-end script
+#!/bin/bash
+
+#deletes image
+/usr/bin/docker rm -f rust-server 2>/dev/null || true
+
+#pulls and runs a new Rust server
+/usr/bin/docker run --name rust-server -d --restart unless-stopped -p 28015:28015 -p 28015:28015/udp -p 28016:28016 -p 28082:28082 -v /rust:/steamcmd/rust --env-file /rust.env -m 16g --cpus="2" didstopia/rust-server
 ```
 
 Note that this particular startup script uses the `--rmflag`, which will destroy the container once it's stopped. This allows for clean starting/stopping of the server, as the container name will always be available this way. We're also forcibly destroying the container both when stopping and starting the server, just in case anything goes wrong.
 
-The log file exists at `/var/log/upstart/rust-server.log`, and you should check it for errors if the server doesn't seem to be starting. This is usually just a naming conflict, which can be resolved by destroying the container using `docker rm -f rust-server` and restarting.
+- Create another file in `/etc/systemd/system/startup.service` and paste the following in it:
 
-You should now be able to start and stop the server, as well as check the status of it, by running any of the following commands:
+```bash
+[Unit]
+Description=Startup Services
+After=multi-user.target
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/local/sbin/docker_startup.service
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
+```
+
+This will create the service and will allow you stop start and stop the startup service with the following commands:
 
 ```bash
 service rust-server start
