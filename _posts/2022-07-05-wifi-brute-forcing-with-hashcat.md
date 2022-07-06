@@ -12,17 +12,17 @@ image:
   height: 675
 ---
 
-## Introduction
+# Introduction
 ---
 
 This guide will teach you some basic penetration testing skills for wireless networks. I hope to also demonstrate how having a weak password can leave the most secure networks vulnerable.
 
-## Pre-setup
+# Pre-setup
 ---
 
 In order to follow along with this guide you will need a few things to get started. First you will need a wifi adapter that is capable of using managed/monitor mode. If you don't know if your adapter is capable of that, you will have find out by searching online for your wifi adapter's chipset and seeing if it is able to utilize monitor mode. The next thing you will need will be an installation of Kali Linux. Although Kali is not the only operating system of performing these tasks, many of the tools we will be using today are already present in Kali so it makes the process smoother. If you choose to use Kali make sure your wifi adapter is compatible with Kali Linux before proceeding. You can do a quick google search to find out if your wifi adapter is compatible with Kali. And the last thing you will need will be a powerful enough GPU to perform the brute forcing required to crack these hashes.
 
-## Preparing our tools
+# Preparing our tools
 ---
 
 In your Kali installation make sure your wifi adapter is being detected by your operating system by typing in `iwconfig`. It should show up as so:
@@ -42,7 +42,7 @@ sudo apt install hcxpcapngtool
 
 I've separated each command rather than combine them all into one so that we can go over what each command does. `sudo apt update` will update the repositories on the OS so when you make a call to install a library it has the latest references when grabbing a download link. `sudo apt upgrade` will download and install any updates to all the repositories and libraries installed on your OS. `sudo apt install hcxdumptool` will install the first tool we will be using to capture packets. And finally `sudo apt install hcxpcapngtool` will install the tool we will use to convert the packets we capture to a file that hashcat will be able to read and decrypt.
 
-## Scanning for networks
+# Scanning for networks
 
 Let's start by disabling our network services so we can use our network adapter to scan for networks.
 
@@ -61,7 +61,7 @@ The first flag in this command `-i` will specify which interface we will be usin
 
 Let the tool run for a few minutes and capture information. After a while you can use the shortcut `Ctrl+C` to stop the scan and now we can start cracking.
 
-## Making the Hash File and Cracking It
+# Making the Hash File and Cracking It
 
 Next, we will need to convert the newly created pcap file we just made from the scan into a format that can be processed by hashcat.
 
@@ -97,9 +97,9 @@ sudo hashcat -m 22000 hash.hc22000 -a 3 ?d?d?d?d?d?d?d?d
 
 The first flag in this command, `-m` will specify the hashmode to use for this attack. Since we will be cracking WPA/WPA2 we will be specifying `22000` for the mode. You can find a full list of different hashmodes [here](https://hashcat.net/wiki/doku.php?id=example_hashes). The next flag is the `-a` flag and will specify the attack mode for this command execution. For this example we will be doing a brute force attack which will iterate through every possible variation to find the right combination so we will set the attack mode to `3`. You can read more about the different attack modes [here](https://hashcat.net/wiki/doku.php?id=hashcat). And finally the `?d` at the end of the command specifies which character type to try when performing the attack. There are four different character types: digits, uppercase, lowercase, and special characters. The `?d` denotes digits. We will try an alphanumeric attack in a later example.
 
-## Different Brute Force Attacks
+# Different Brute Force Attacks
 
-# Using a wordlist
+## Using a wordlist
 
 A wordlist is a preset list of common passwords also known as a dictionary attack. A list of common wordlists can be found in Kali under `/usr/share/wordlists/` but it can also be downloaded from [here](https://github.com/00xBAD/kali-wordlists).
 
@@ -107,7 +107,7 @@ A wordlist is a preset list of common passwords also known as a dictionary attac
 hashcat -m 22000 hash.hc22000 wordlist.txt
 ```
 
-# Brute Forcing Alphanumeric and Special Character Passwords
+## Brute Forcing Alphanumeric and Special Character Passwords
 
 The following command will brute force a password with digits, lowercase, upercase and special characters:
 
@@ -115,7 +115,7 @@ The following command will brute force a password with digits, lowercase, uperca
 hashcat -m 22000 hash.hc22000 -1 ?d?l?u?s -a 3 ?1?1?1?1?1?1?1?1
 ```
 
-# Rule-based Attack
+## Rule-based Attack
 
 This is similar to a dictionary attack but the commands look a bit different:
 
