@@ -57,7 +57,7 @@ Next we will use the `hcxdumptool` we downloaded earlier to scan for networks.
 sudo hcxdumptool -i wlan0 -o dumpfile.pcapng --active_beacon --enable_status=15
 ```
 
-The first flag in this command `-i` will specify which interface we will be using to perform the scan. The `-o` flag will output the contents of the scan into a file. In this instance it will be the `dumpfile.pcapng` file. The `--active_beacon` flag will transmit a beacon to every collected ESSID from the collected ESSID list every few minutes. And finally the ``--enable_status=15` flag will display the following network information into the terminal: `EAPOL` `ASSOCIATION` `REASSOCIATION` `AUTHENTICATION` `BEACON`. You can always read more about the specific command using `man hcxdumptool`.
+The first flag in this command `-i` will specify which interface we will be using to perform the scan. The `-o` flag will output the contents of the scan into a file. In this instance it will be the `dumpfile.pcapng` file. The `--active_beacon` flag will transmit a beacon to every collected ESSID from the collected ESSID list every few minutes. And finally the `--enable_status=15` flag will display the following network information into the terminal: `EAPOL` `ASSOCIATION` `REASSOCIATION` `AUTHENTICATION` `BEACON`. You can always read more about the specific command using `man hcxdumptool`.
 
 Let the tool run for a few minutes and capture information. After a while you can use the shortcut `Ctrl+C` to stop the scan and now we can start cracking.
 
