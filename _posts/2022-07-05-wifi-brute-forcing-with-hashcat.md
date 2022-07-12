@@ -97,6 +97,8 @@ sudo hashcat -m 22000 hash.hc22000 -a 3 ?d?d?d?d?d?d?d?d
 
 The first flag in this command, `-m` will specify the hashmode to use for this attack. Since we will be cracking WPA/WPA2 we will be specifying `22000` for the mode. You can find a full list of different hashmodes [here](https://hashcat.net/wiki/doku.php?id=example_hashes). The next flag is the `-a` flag and will specify the attack mode for this command execution. For this example we will be doing a brute force attack which will iterate through every possible variation to find the right combination so we will set the attack mode to `3`. You can read more about the different attack modes [here](https://hashcat.net/wiki/doku.php?id=hashcat). And finally the `?d` at the end of the command specifies which character type to try when performing the attack. There are four different character types: digits, uppercase, lowercase, and special characters. The `?d` denotes digits. We will try an alphanumeric attack in a later example.
 
+If you have any additional information that might help narrow down the attack be sure to take advantage of it as it could make the difference between waiting a week for the password to get cracked to a few hours. To give an example, an offensive security expert went around sniffing for wireless passwords and was able to crack a good amount of them by only guessing ten digit numbers cause many people were using their phone numbers as their passwords. Below we will show examples of different attack vectors and ways you can narrow your search.
+
 # Different Brute Force Attacks
 
 ## Using a wordlist
@@ -124,3 +126,11 @@ hashcat -m 22000 hash.hc22000 -r rules/best64.rule cracked.txt.gz
 ```
 
 This will mutate the wordlist with best 64 rules, which comes with the hashcat distribution. Change as necessary and remember, the time it will take the attack to finish will increase proportionally with the amount of rules.
+
+# Getting Your Results and Conclusion
+
+If your attack was a success you will find the cracked password in a `.potfile` or you can type out the same cracking parameters again but tagging `--show` at the end.
+
+These are some of the most basic techniques a hacker can use to try to get into your network. Even if WPA/WPA2 is considered a secure way of protecting your network. It can easily be broken into if you don't have an equally secure password as well. Over time cracking and brute forcing methods will only get faster and more efficient so the need for a strong password becomes increasingly necessary.
+
+As demonstrated above it is easier to crack a sophisticated but short password than it is to crack a long but easy to remember password. A password containing 8 random characters like this `1S7Hd8@3` will be incredibly hard for a human to guess but incredibly easy for a computer to guess. Even a password that uses a common phrase like `DrinkLots_OfWater825` will take a computer hundreds of years to guess. So in this instance, size does matter.
