@@ -101,7 +101,7 @@ If you have any additional information that might help narrow down the attack be
 
 # Different Brute Force Attacks
 
-## Using a wordlist
+## Using a Wordlist
 
 A wordlist is a preset list of common passwords also known as a dictionary attack. A list of common wordlists can be found in Kali under `/usr/share/wordlists/` but it can also be downloaded from [here](https://github.com/00xBAD/kali-wordlists).
 
