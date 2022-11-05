@@ -29,8 +29,8 @@ Hi, I'm Hieu Huynh and I've made this blog as a way for me to share my passion f
 
 - CompTIA A+ (2021)
 - CompTIA Network+ (2022)
-- CompTIA Linux+ (In Progress)
-- AWS Cerfified Cloud Practicioner (In Progress)
+- Red Hat Certified Systems Administrator (In Progress)
+- AWS Cerfified Cloud Practicioner (2022)
 - Rosemead High School Diploma (2012)
 
 ## Projects
