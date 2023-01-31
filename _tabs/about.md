@@ -10,7 +10,15 @@ Hi, I'm Hieu Huynh and I've made this blog as a way for me to share my passion f
 ## Work Experience
 ---
 
-<h4> Data Center Technician @ Psychz Networks | Mar 2021 - Present </h4>
+<h4> Helpdesk Technician @ Quinn Company | Jul 2022 - Present </h4>
+- Support for over 1,300 employees through phone calls and ticketing system with 100% user satisfaction.
+- Provide technical assistance and support related to end users, and computer systems, hardware, or software.
+- Support end-users with application, computer, desk phone, printer and basic network related issues.
+- Creating detailed standard operating procedure documents for use by IT individuals and regular users.
+- Purchasing, invoicing and inventory management of IT equipment to be used by users and departments.
+- Regular communication with various vendors to help assist with tasks outside the scope of job duties.
+
+<h4> Data Center Technician @ Psychz Networks | Mar 2021 - Jun 2022 </h4>
 - Manage customer incidents and requests through internal ticketing system.
 - Performed internal hardware installs, racking, deracking, cabling, and maintenance tasks.
 - Troubleshooting hardware, software, and network issues for dedicated and client servers.
@@ -48,10 +56,10 @@ Hi, I'm Hieu Huynh and I've made this blog as a way for me to share my passion f
 Ticketing Systems ❖ Networking ❖ Linux ❖ Customer Service ❖ Analytical & Critical Thinking ❖ Complaint & Conflict Resolution ❖ Technical Troubleshooting ❖ Research & Analysis ❖ Time Management ❖ Multitasking ❖ Working Knowledge of Python, and Java ❖ Planning and Coordination ❖ Teamwork and Leadership ❖ Public Communication and Orientation ❖ Word ❖ Excel ❖ Powerpoint
 
 <h4> Software </h4>
-Bash ❖ Zoom ❖ Slack ❖ MS365 Office 2016 ❖ PuTTY ❖ Rufus ❖ Oracle VM ❖ Remote Desktop
+KACE ❖ Teams ❖ Remote Desktop ❖ Active Directory ❖ PuTTY ❖ Rufus ❖ Exchange Online ❖ Azure AD ❖ Bash
 
 <h4> Platforms </h4>
-Windows 7/8/10 Desktop ❖ Ubuntu Desktop/Server ❖ CentOS ❖ Android ❖ ProxMox
+Windows 7/8/10 ❖ Ubuntu Desktop/Server ❖ RHEL ❖  Android ❖  iOS ❖  ProxMox
 
 <h4> Interests </h4>
 Non-Fiction Books ❖ Social Causes: Healthcare & Housing ❖ Volunteerism ❖ Animals/Pets ❖ Video Games ❖ Political Activism ❖ Programming ❖ Discord Bot Plugin Development (Python) ❖ Rust Game Plugin Development (C#) ❖ Minecraft Plugin Development (Java) ❖ Server Hosting (Linux)
