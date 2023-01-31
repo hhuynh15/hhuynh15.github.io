@@ -7,7 +7,7 @@ date: 2022-07-05 04:21:00 -0700
 categories: [Guides]
 tags: [Instructional, Guides, Networking, Hacking, Wifi, Offensive, Hashcat]
 image: 
-  src: /QmHbTU6.pngrOSM02X.png
+  src: /QmHbTU6.png
   width: 1200
   height: 675
 ---
