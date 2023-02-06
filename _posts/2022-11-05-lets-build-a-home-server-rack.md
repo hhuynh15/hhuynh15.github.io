@@ -99,8 +99,8 @@ Make sure your configurations are correct:
 ```bash
 homelab-switch(config-if)#exit
 homelab-switch#show ip interface brief
-Interface IP-Address	OK?	Method	Status	Protocol
-Vlan10	10.10.0.2	YES	manual	up	down
+Interface   IP-Address	OK?	Method	Status	Protocol
+Vlan10    10.10.0.2	YES	manual	up	down
 ```
 
 Congratulations we have just configured our Cisco switch for our homelab. There is much more to configuring a switch for your network such as configuring link aggregation, spanning tree, and access control lists. But for now this is sufficient for our basic usage.
