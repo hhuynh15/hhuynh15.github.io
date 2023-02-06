@@ -50,7 +50,7 @@ For VMware, you can use vSphere, which is a virtualization platform that allows 
 
 Let’s start by connecting to our switch either through a console connection or SSH/telnet. Next enter global configuration mode by typing:
 
-```c
+```bash
 Switch> enable
 Switch#configure terminal
 ```
@@ -58,20 +58,20 @@ Switch#configure terminal
 Now let’s configure the hostname and create a new vlan for our switch:
 
 
-```c
+```bash
 Switch(config)#hostname homelab-switch
 homelab-switch(config)#vlan 10
 ```
 
 You can give your vlan an easily recognized name like this:
 
-```c
+```bash
 homelab-switch(config-vlan)#name public
 ```
 
 Now that we have our vlan created let’s start assigning a port to the vlan:
 
-```c
+```bash
 homelab-switch(config-vlan)#exit
 homelab-switch(config)#interface FastEthernet 0/1
 homelab-switch(config-if)#switchport mode access
@@ -80,7 +80,7 @@ homelab-switch(config-if)#switchport access vlan 10
 
 If you want to assign multiple ports to a vlan at once. We would do it like so:
 
-```c
+```bash
 homelab-switch(config-if)#exit
 homelab-switch(config)#interface range FastEthernet 0/2-10
 homelab-switch(config-if)#switchport mode access
@@ -88,7 +88,7 @@ homelab-switch(config-if)#switchport access vlan 10
 ```
 Next let’s configure an IP address to our vlan:
 
-```c
+```bash
 homelab-switch(config-vlan)#exit
 homelab-switch(config)#interface vlan 10
 homelab-switch(config-if)#ip address 10.10.0.2 255.255.255.0
@@ -96,7 +96,7 @@ homelab-switch(config-if)#ip address 10.10.0.2 255.255.255.0
 
 Make sure your configurations are correct:
 
-```c
+```bash
 homelab-switch(config-if)#exit
 homelab-switch#show ip interface brief
 Interface IP-Address	OK?	Method	Status	Protocol
