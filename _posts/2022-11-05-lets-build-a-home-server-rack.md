@@ -51,8 +51,59 @@ For VMware, you can use vSphere, which is a virtualization platform that allows 
 Let’s start by connecting to our switch either through a console connection or SSH/telnet. Next enter global configuration mode by typing:
 
 ```c
-configure terminal
+Switch> enable
+Switch#configure terminal
 ```
+
+Now let’s configure the hostname and create a new vlan for our switch:
+
+
+```c
+Switch(config)#hostname homelab-switch
+homelab-switch(config)#vlan 10
+```
+
+You can give your vlan an easily recognized name like this:
+
+```c
+homelab-switch(config-vlan)#name public
+```
+
+Now that we have our vlan created let’s start assigning a port to the vlan:
+
+```c
+homelab-switch(config-vlan)#exit
+homelab-switch(config)#interface FastEthernet 0/1
+homelab-switch(config-if)#switchport mode access
+homelab-switch(config-if)#switchport access vlan 10
+```
+
+If you want to assign multiple ports to a vlan at once. We would do it like so:
+
+```c
+homelab-switch(config-if)#exit
+homelab-switch(config)#interface range FastEthernet 0/2-10
+homelab-switch(config-if)#switchport mode access
+homelab-switch(config-if)#switchport access vlan 10
+```
+Next let’s configure an IP address to our vlan:
+
+```c
+homelab-switch(config-vlan)#exit
+homelab-switch(config)#interface vlan 10
+homelab-switch(config-if)#ip address 10.10.0.2 255.255.255.0
+```
+
+Make sure your configurations are correct:
+
+```c
+homelab-switch(config-if)#exit
+homelab-switch#show ip interface brief
+Interface IP-Address	OK?	Method	Status	Protocol
+Vlan10	10.10.0.2	YES	manual	up	down
+```
+
+Congratulations we have just configured our Cisco switch for our homelab. There is much more to configuring a switch for your network such as configuring link aggregation, spanning tree, and access control lists. But for now this is sufficient for our basic usage.
 
 # Making the Hash File and Cracking It
 
