@@ -143,7 +143,7 @@ The virtual networking in VMware is implemented through virtual switches. You ca
 After setting up the virtual machines and networking, it's important to test and troubleshoot the environment. This helps to identify and resolve any issues that might arise during deployment. Here are some of the common testing and troubleshooting tasks:
 
 - Ping test: Use the `ping` command to test connectivity between the virtual machines and the physical network.
-- Traceroute: Use the "traceroute" command to determine the path taken by packets from the source to the destination.
+- Traceroute: Use the `traceroute` command to determine the path taken by packets from the source to the destination.
 - VLAN Configuration: Verify that the VLANs are configured correctly on the switches by using the `show vlan` command on Cisco switches and "show interfaces [interface_name] switchport" command on Juniper switches.
 - Firewall rules: Verify that the firewall rules are configured correctly on the virtual machines and switches.
 - Router Configuration: Verify that the routing protocols, such as OSPF and BGP, are configured correctly on the routers and switches. You can use the `show ip route` command on Cisco routers to verify the routing information.
