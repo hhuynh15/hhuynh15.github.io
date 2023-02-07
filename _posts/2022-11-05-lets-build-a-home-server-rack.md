@@ -44,9 +44,7 @@ Here is an example build from my own server rack:
 
 Once you have the hardware, you can install Linux and VMware on the servers. For Linux, you can use Ubuntu or CentOS, both of which are popular distributions for server administration. You can download the ISO image of the distribution from the official website and install it on the servers using a bootable USB drive.
 
-For VMware, you can use vSphere, which is a virtualization platform that allows you to run multiple virtual machines on a single physical server. You can download a trial version of vSphere from the VMware website and install it on the servers. After installation, you can configure vSphere to manage the virtual machines and allocate resources, such as RAM and storage, to each virtual machine.
-
-(write about using individual servers vs virtualizing on vmware)
+For VMware, you can use vSphere, which is a virtualization platform that allows you to run multiple virtual machines on a single physical server. This is great if you have very few machines to work with and the same principles of provisioning and configuring physical servers apply just the same to virtual machines. You can download a trial version of vSphere from the VMware website and install it on the servers. After installation, you can configure vSphere to manage the virtual machines and allocate resources, such as RAM and storage, to each virtual machine.
 
 # Configure the Switch
 
@@ -116,27 +114,27 @@ With the servers and switches configured, it's time to set up the virtual machin
 
 To create virtual machines in VMware, you can use the vSphere client. It's a graphical user interface that allows you to manage virtualized environments. Here are the steps to create a virtual machine:
 
-- Open the vSphere client and log in to the vCenter Server.
-- Click on the "Create a new virtual machine" option in the Home screen.
-- Select the type of virtual machine you want to create: Custom, Typical, or Instant Clone.
-- Select the guest operating system you want to install on the virtual machine.
-- Allocate resources such as CPU, memory, and storage to the virtual machine.
-- Configure the network adapter for the virtual machine and connect it to a virtual switch.
-- Customize the virtual machine with additional hardware, such as a CD/DVD drive or additional network adapters.
-- Review the configuration options and complete the creation process.
+1. Open the vSphere client and log in to the vCenter Server.
+2. Click on the "Create a new virtual machine" option in the Home screen.
+3. Select the type of virtual machine you want to create: Custom, Typical, or Instant Clone.
+4. Select the guest operating system you want to install on the virtual machine.
+5. Allocate resources such as CPU, memory, and storage to the virtual machine.
+6. Configure the network adapter for the virtual machine and connect it to a virtual switch.
+7. Customize the virtual machine with additional hardware, such as a CD/DVD drive or additional network adapters.
+8. Review the configuration options and complete the creation process.
 (go more in depth about how to set up a vm with vsphere)
 
 ## Virtual Networking
 
 The virtual networking in VMware is implemented through virtual switches. You can create virtual switches and connect them to physical switches to create virtual networks. The same principles of networking apply within virtual networks so what we did above with our real life Cisco switch we can configure the same type of network in vSphere. Here's how you can create a virtual switch in VMware:
 
-- Open the vSphere client and log in to the vCenter Server.
-- Navigate to the host you want to create the virtual switch on.
-- Click on the "Configure" tab and select "Networking."
-- Click on the "Add Networking" button and select "Virtual Switch."
-- Enter a name for the virtual switch and select the physical switch you want to connect it to.
-- Configure the settings for the virtual switch, such as VLANs, security policies, and traffic shaping policies.
-- Click on the "Finish" button to create the virtual switch.
+1. Open the vSphere client and log in to the vCenter Server.
+2. Navigate to the host you want to create the virtual switch on.
+3. Click on the "Configure" tab and select "Networking."
+4. Click on the "Add Networking" button and select "Virtual Switch."
+5. Enter a name for the virtual switch and select the physical switch you want to connect it to.
+6. Configure the settings for the virtual switch, such as VLANs, security policies, and traffic shaping policies.
+7. Click on the "Finish" button to create the virtual switch.
 
 ## Troubleshooting and Testing 
 
