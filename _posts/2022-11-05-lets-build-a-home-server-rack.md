@@ -46,11 +46,13 @@ Once you have the hardware, you can install Linux and VMware on the servers. For
 
 For VMware, you can use vSphere, which is a virtualization platform that allows you to run multiple virtual machines on a single physical server. You can download a trial version of vSphere from the VMware website and install it on the servers. After installation, you can configure vSphere to manage the virtual machines and allocate resources, such as RAM and storage, to each virtual machine.
 
-# Configure the Switches
+(write about using individual servers vs virtualizing on vmware)
+
+# Configure the Switch
 
 Let’s start by connecting to our switch either through a console connection or SSH/telnet. Next enter global configuration mode by typing:
 
-```bash
+```c
 Switch> enable
 Switch#configure terminal
 ```
@@ -58,20 +60,20 @@ Switch#configure terminal
 Now let’s configure the hostname and create a new vlan for our switch:
 
 
-```bash
+```c
 Switch(config)#hostname homelab-switch
 homelab-switch(config)#vlan 10
 ```
 
 You can give your vlan an easily recognized name like this:
 
-```bash
+```c
 homelab-switch(config-vlan)#name public
 ```
 
 Now that we have our vlan created let’s start assigning a port to the vlan:
 
-```bash
+```c
 homelab-switch(config-vlan)#exit
 homelab-switch(config)#interface FastEthernet 0/1
 homelab-switch(config-if)#switchport mode access
@@ -80,7 +82,7 @@ homelab-switch(config-if)#switchport access vlan 10
 
 If you want to assign multiple ports to a vlan at once. We would do it like so:
 
-```bash
+```c
 homelab-switch(config-if)#exit
 homelab-switch(config)#interface range FastEthernet 0/2-10
 homelab-switch(config-if)#switchport mode access
@@ -88,94 +90,76 @@ homelab-switch(config-if)#switchport access vlan 10
 ```
 Next let’s configure an IP address to our vlan:
 
-```bash
+```c
 homelab-switch(config-vlan)#exit
 homelab-switch(config)#interface vlan 10
 homelab-switch(config-if)#ip address 10.10.0.2 255.255.255.0
 ```
 
-Make sure your configurations are correct:
+Finally, let’s enable inter-vlan routing and also make sure your configurations are correct:
 
-```bash
+```c
 homelab-switch(config-if)#exit
+homelab-switch#ip routing
 homelab-switch#show ip interface brief
-Interface   IP-Address	OK?	Method	Status	Protocol
-Vlan10    10.10.0.2	YES	manual	up	down
+Interface 	IP-Address	OK?	Method	Status	Protocol
+Vlan10		10.10.0.2	YES	manual	up	down
 ```
 
 Congratulations we have just configured our Cisco switch for our homelab. There is much more to configuring a switch for your network such as configuring link aggregation, spanning tree, and access control lists. But for now this is sufficient for our basic usage.
 
-# Making the Hash File and Cracking It
+# Setting up virtual machines and networking
 
-Next, we will need to convert the newly created pcap file we just made from the scan into a format that can be processed by hashcat.
+With the servers and switches configured, it's time to set up the virtual machines and networking. This requires a good understanding of virtualization and networking technologies.
 
-```bash
-sudo hcxpcapngtool -o hash.hc22000 -E essidlist dumpfile.pcapng
-```
+## Virtual Machines
 
-Agains the `-o` flag will output the file as `hash.hc22000` and the `-E` flag will output the collected ESSIDs into a list. Now that we have the necessary files we can start cracking. Remember to do this on a computer with a sufficiently powerful GPU otherwise it will take you hours to crack the simplest of passwords. Since we are attempting to penetrate our own network for this example, we have set the password to all digits to show the speed and efficiency at which we can crack a simple password like this.
+To create virtual machines in VMware, you can use the vSphere client. It's a graphical user interface that allows you to manage virtualized environments. Here are the steps to create a virtual machine:
 
-Before we can start cracking we need to specify which network we want to crack by removing every other network we found in the last scan. Use the following command to help find the mac address:
+- Open the vSphere client and log in to the vCenter Server.
+- Click on the "Create a new virtual machine" option in the Home screen.
+- Select the type of virtual machine you want to create: Custom, Typical, or Instant Clone.
+- Select the guest operating system you want to install on the virtual machine.
+- Allocate resources such as CPU, memory, and storage to the virtual machine.
+- Configure the network adapter for the virtual machine and connect it to a virtual switch.
+- Customize the virtual machine with additional hardware, such as a CD/DVD drive or additional network adapters.
+- Review the configuration options and complete the creation process.
+(go more in depth about how to set up a vm with vsphere)
 
-```bash
-sudo hcxdumptool --do_rcscan -i wlan0
-```
-Use `Ctrl-C` to exit the scan. On the left side you will see the BSSID of the network. That is what you will need to identify your network. Match it with the ESSID and write down the information before proceeding.
+## Virtual Networking
 
-Open up your `hash.hc22000` file with a text editor, it should look something like this:
+The virtual networking in VMware is implemented through virtual switches. You can create virtual switches and connect them to physical switches to create virtual networks. The same principles of networking apply within virtual networks so what we did above with our real life Cisco switch we can configure the same type of network in vSphere. Here's how you can create a virtual switch in VMware:
 
-```
-WPA*02*b38d2a7c87aa0864201c41eaac3bd074*20becd364387*3420037d4435*4b6569746857696669*082b00483ffa60261b82837a38916fb92e4e0d81608343c95f2d97a978c449ed*0103007502010a00000000000000000001eb021bf76d5b9a03965527c2796825b9e268e7cdccc4f4603dce98b894613612000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001630140100000fac040100000fac040100000fac020000*02
-WPA*02*fdf01f941daddca2bd780d2f2a6f5711*20becd364387*3c846ae3aeb6*4b6569746857696669*72cc768ae878785bf30c22e54cc23e21362e7fbd3597d92e7bf43b88889b8ef7*0103007502010a0000000000000000fa12f4345f77049ab5a66ce61f600af4cdcf0c28104bcbbb9b17e941949249746dd2000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001630140100000fac040100000fac040100000fac020000*10
-WPA*02*0b4838355821f9625ca3971d6e40c934*20becd364387*3c846ae3cfcd*4b6569746857696669*72cc768ae878785bf30c22e54cc23e21362e7fbd3597d92e7bf43b88889b8ef7*0103007502010a0000000000000000fa12f852203ce4dd9ff5196d583503e10c476f203bcf5d9223ba5cecfa434910f432000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001630140100000fac040100000fac040100000fac020000*10
-WPA*02*9c465e97913d7c93ea37023392303428*20becd364387*6038e0edd011*4b6569746857696669*72cc768ae878785bf30c22e54cc23e21362e7fbd3597d92e7bf43b88889b8ef7*0103007502010a0000000000000000fa1225873e630b8cf46ea6eaac659603576b6dbd1e3e3640e2931ca37ce3f0b1d24d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001630140100000fac040100000fac040100000fac020000*10
-```
+- Open the vSphere client and log in to the vCenter Server.
+- Navigate to the host you want to create the virtual switch on.
+- Click on the "Configure" tab and select "Networking."
+- Click on the "Add Networking" button and select "Virtual Switch."
+- Enter a name for the virtual switch and select the physical switch you want to connect it to.
+- Configure the settings for the virtual switch, such as VLANs, security policies, and traffic shaping policies.
+- Click on the "Finish" button to create the virtual switch.
 
-Delete all the lines that **do not** contain your target BSSID. Save the file and it will be what you will use to perform the attack.
+## Troubleshooting and Testing 
 
-We will demonstrate multiple attack vectors for cracking this hash. Firstly, we will try cracking only digits:
+After setting up the virtual machines and networking, it's important to test and troubleshoot the environment. This helps to identify and resolve any issues that might arise during deployment. Here are some of the common testing and troubleshooting tasks:
 
-```bash
-sudo hashcat -m 22000 hash.hc22000 -a 3 ?d?d?d?d?d?d?d?d
-```
+- Ping test: Use the `ping` command to test connectivity between the virtual machines and the physical network.
+- Traceroute: Use the "traceroute" command to determine the path taken by packets from the source to the destination.
+- VLAN Configuration: Verify that the VLANs are configured correctly on the switches by using the `show vlan` command on Cisco switches and "show interfaces [interface_name] switchport" command on Juniper switches.
+- Firewall rules: Verify that the firewall rules are configured correctly on the virtual machines and switches.
+- Router Configuration: Verify that the routing protocols, such as OSPF and BGP, are configured correctly on the routers and switches. You can use the `show ip route` command on Cisco routers to verify the routing information.
+- Virtual Machine Configuration: Verify that the virtual machines are configured correctly and that they can communicate with each other and the physical network.
+- Switch Configuration: Verify that the physical switches are configured correctly and that they are able to communicate with the virtual switches and the routers.
 
-The first flag in this command, `-m` will specify the hashmode to use for this attack. Since we will be cracking WPA/WPA2 we will be specifying `22000` for the mode. You can find a full list of different hashmodes [here](https://hashcat.net/wiki/doku.php?id=example_hashes). The next flag is the `-a` flag and will specify the attack mode for this command execution. For this example we will be doing a brute force attack which will iterate through every possible variation to find the right combination so we will set the attack mode to `3`. You can read more about the different attack modes [here](https://hashcat.net/wiki/doku.php?id=hashcat). And finally the `?d` at the end of the command specifies which character type to try when performing the attack. There are four different character types: digits, uppercase, lowercase, and special characters. The `?d` denotes digits. We will try an alphanumeric attack in a later example.
+## Monitoring and Maintenance
 
-If you have any additional information that might help narrow down the attack be sure to take advantage of it as it could make the difference between waiting a week for the password to get cracked to a few hours. To give an example, an offensive security expert went around sniffing for wireless passwords and was able to crack a good amount of them by only guessing ten digit numbers cause many people were using their phone numbers as their passwords. Below we will show examples of different attack vectors and ways you can narrow your search.
+Finally, it's important to monitor and maintain the home server rack environment to ensure that it operates optimally. Here are some of the common monitoring and maintenance tasks:
 
-# Different Brute Force Attacks
+- Resource Monitoring: Monitor the resources of the virtual machines, such as CPU usage, memory usage, and disk space, to ensure that they are not running out of resources.
+- Backup and Recovery: Regularly back up the virtual machines and switches to ensure that you can recover from any failures or data loss.
+- Software Updates: Regularly update the software on the virtual machines, switches, and routers to ensure that they are running the latest security patches and bug fixes.
+- Virtual Machine Management: Manage the virtual machines, including creating, modifying, and deleting virtual machines, as needed.
 
-## Using a Wordlist
+# Conclusion
 
-A wordlist is a preset list of common passwords also known as a dictionary attack. A list of common wordlists can be found in Kali under `/usr/share/wordlists/` but it can also be downloaded from [here](https://github.com/00xBAD/kali-wordlists).
-
-```bash
-hashcat -m 22000 hash.hc22000 wordlist.txt
-```
-
-## Brute Forcing Alphanumeric and Special Character Passwords
-
-The following command will brute force a password with digits, lowercase, upercase and special characters:
-
-```bash
-hashcat -m 22000 hash.hc22000 -1 ?d?l?u?s -a 3 ?1?1?1?1?1?1?1?1
-```
-
-## Rule-based Attack
-
-This is similar to a dictionary attack but the commands look a bit different:
-
-```bash
-hashcat -m 22000 hash.hc22000 -r rules/best64.rule cracked.txt.gz
-```
-
-This will mutate the wordlist with best 64 rules, which comes with the hashcat distribution. Change as necessary and remember, the time it will take the attack to finish will increase proportionally with the amount of rules.
-
-# Getting Your Results and Conclusion
-
-If your attack was a success you will find the cracked password in a `.potfile` or you can type out the same cracking parameters again but tagging `--show` at the end.
-
-These are some of the most basic techniques a hacker can use to try to get into your network. Even if WPA/WPA2 is considered a secure way of protecting your network. It can easily be broken into if you don't have an equally secure password as well. Over time cracking and brute forcing methods will only get faster and more efficient so the need for a strong password becomes increasingly necessary.
-
-As demonstrated above it is easier to crack a sophisticated but short password than it is to crack a long but easy to remember password. A password containing 8 random characters like this `1S7Hd8@3` will be incredibly hard for a human to guess but incredibly easy for a computer to guess. Even a password that uses a common phrase like `DrinkLots_OfWater825` will take a computer hundreds of years to guess. So in this instance, size does matter.
+In conclusion, creating a home server rack using Linux, VMware, Cisco, and Juniper technology is a great way to build a powerful and flexible computing environment. However, it requires a good understanding of virtualization, networking, and system administration technologies. By following the steps outlined in this post, you can create a home server rack that is robust, secure, and scalable.
 
