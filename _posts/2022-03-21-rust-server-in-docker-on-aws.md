@@ -146,7 +146,7 @@ You should now have a full functioning, fully configured server setup. All that'
 ## Automatic Startup
 ---
 
-- Create a new file in `/usr/local/sbin/docker_startup.service` and paste the following in it:
+Create a new file in `/usr/local/sbin/docker_startup.service` and paste the following in it:
 
 ```bash
 #!/bin/bash
@@ -160,7 +160,7 @@ You should now have a full functioning, fully configured server setup. All that'
 
 Note that this particular startup script uses the `--rmflag`, which will destroy the container once it's stopped. This allows for clean starting/stopping of the server, as the container name will always be available this way. We're also forcibly destroying the container both when stopping and starting the server, just in case anything goes wrong.
 
-- Create another file in `/etc/systemd/system/startup.service` and paste the following in it:
+Create another file in `/etc/systemd/system/startup.service` and paste the following in it:
 
 ```bash
 [Unit]
