@@ -44,7 +44,8 @@ Hi, I'm Hieu Huynh and I've made this blog as a way for me to share my passion f
 ## Projects
 ---
 
-<h4> Ubuntu 20.04 Server | Hands-On Home Lab </h4>
+<h4> Home Server Rack | Hands-On Home Lab </h4>
+- Built a home server rack running Linux servers and VMware. Networked together with Cisco switches.
 - Installed and setup Linux server running multiple game servers on individual docker containers.
 - Installed and configured server to be a network attached storage media server.
 - Configured Ubuntu server 20.04 domain settings, server name, TCP/IP settings, ad-filtered DNS, and SSH.
