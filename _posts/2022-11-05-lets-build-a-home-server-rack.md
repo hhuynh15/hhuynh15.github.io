@@ -159,5 +159,4 @@ Finally, it's important to monitor and maintain the home server rack environment
 
 # Conclusion
 
-Creating a home server rack using Linux, VMware, Cisco, and Juniper technology is a great way to build a powerful and flexible computing environment. However, it requires a good understanding of virtualization, networking, and system administration technologies. By following the steps outlined in this post, you can create a home server rack that is robust, secure, and scalable.
-
+Creating a home server rack using Linux, VMware, Cisco, and Juniper technology is a great way to build a powerful and flexible computing environment. However, it requires a good understanding of virtualization, networking, and system administration technologies. By following the steps outlined in this post, you can create a home server rack yourself and learn the basics of systems administration. Having a home server rack can also come with many benefits such as having a centralized management system, improved performance, increased security, and the ability to customize the hardware and software that you use. Every home rack can be different so if you have any questions regarding your own setup, please feel free to let me know by emailing me!
