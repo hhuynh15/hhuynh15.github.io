@@ -10,7 +10,7 @@ image:
   src: /UqJBtdz.png
   width: 512
   height: 512
-  alt: 'an illustration of a woman typing on a laptop with a friendly, cute and helpful toy robot' Dalle Image prompted by Hieu Huynh
+  alt: an illustration of a woman typing on a laptop with a friendly, cute and helpful toy robot, Dalle Image prompted by Hieu Huynh
 ---
 
 This blogpost is partially written by AI
