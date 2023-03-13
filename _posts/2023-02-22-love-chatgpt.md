@@ -7,9 +7,9 @@ date: 2023-02-22 11:51:00 -0700
 categories: [Blogging, Tech]
 tags: [Blogging, News, Tech, AI, ChatGPT, Career, Automation]
 image: 
-  src: /hxnje62.png
-  width: 1280
-  height: 720
+  src: /UqJBtdz.png
+  width: 1024
+  height: 1024
 ---
 
 # Introduction
