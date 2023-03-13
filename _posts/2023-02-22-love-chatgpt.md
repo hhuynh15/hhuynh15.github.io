@@ -8,9 +8,13 @@ categories: [Blogging, Tech]
 tags: [Blogging, News, Tech, AI, ChatGPT, Career, Automation]
 image: 
   src: /UqJBtdz.png
-  width: 1024
-  height: 1024
+  width: 512
+  height: 512
 ---
+
+"an illustration of a woman typing on a laptop with a friendly, cute and helpful toy robot,” Dalle Image prompted by Hieu Huynh
+
+This blogpost is partially written by AI
 
 # Introduction
 ---
