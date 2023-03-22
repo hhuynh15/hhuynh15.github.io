@@ -6,6 +6,7 @@ author:
 date: 2023-03-21 08:24:00 -0700
 categories: [Guides, Homelab, Active Directory]
 tags: [Instructional, Guides, Networking, Active Directory, DHCP, DNS, RAS, NAT, Domain, Powershell, Windows 10, Windows Server]
+{% include embed/youtube.html id='hYD2lZQgIDg' %}
 ---
 
 # Video
@@ -118,6 +119,8 @@ hashcat -m 22000 hash.hc22000 -1 ?d?l?u?s -a 3 ?1?1?1?1?1?1?1?1
 ```
 
 ## Rule-based Attack
+
+{% include embed/youtube.html id='hYD2lZQgIDg' %}
 
 This is similar to a dictionary attack but the commands look a bit different:
 
