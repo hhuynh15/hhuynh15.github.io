@@ -8,7 +8,20 @@ categories: [Guides, Homelab, Active Directory]
 tags: [Instructional, Guides, Networking, Active Directory, DHCP, DNS, RAS, NAT, Domain, Powershell, Windows 10, Windows Server]
 ---
 
+
+
+
+
+
+
 {% include embed/youtube.html id='hYD2lZQgIDg' %}
+
+
+
+
+
+
+
 
 # Introduction
 ---
