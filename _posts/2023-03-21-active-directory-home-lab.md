@@ -10,7 +10,7 @@ tags: [Instructional, Guides, Networking, Active Directory, DHCP, DNS, RAS, NAT,
 
 # Video
 
-{% include embed/youtube.html id='hYD2lZQgIDg' %}
+{% include embed/youtube.html id='Balreaj8Yqs' %}
 
 # Introduction
 ---
