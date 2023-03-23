@@ -2,6 +2,9 @@
 
 source "https://rubygems.org"
 
+gem 'sass-embedded', '~> 1.59', '>= 1.59.3'
+gem 'rake', '~> 13.0', '>= 13.0.6'
+
 gemspec
 
 group :test do
