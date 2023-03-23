@@ -4,7 +4,7 @@ author:
   name: Hieu Huynh
   link: https://github.com/hhuynh15
 date: 2022-11-05 04:21:00 -0700
-categories: [Guides, Homelabs]
+categories: [Guides, Homelab]
 tags: [Instructional, Guides, Networking, Linux, VMWare, Cisco, Homelab, Server]
 image: 
   src: /GpzzpOJ.jpg
