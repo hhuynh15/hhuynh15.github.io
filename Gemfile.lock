@@ -108,6 +108,7 @@ GEM
 PLATFORMS
   aarch64-linux
   x64-mingw32
+  x86_64-linux
 
 DEPENDENCIES
   html-proofer (~> 3.18)
