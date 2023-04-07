@@ -26,7 +26,7 @@ For this guide I thought it would be best to demonstrate how to set up Active Di
 
 [Configuring DHCP Server 31:00 - 35:13](https://youtu.be/Z-vYzYUzMVQ?t=1860)
 
-[Creating Users w/ Powershell 35:24 - 52:11](https://youtu.be/Z-vYzYUzMVQ?t=2124)
+[Creating Users w/ Powershell 35:24 - 51:29](https://youtu.be/Z-vYzYUzMVQ?t=2124)
 
 [Creating a Windows 10 Client on VirtualBox 52:38 - 59:20](https://youtu.be/Z-vYzYUzMVQ?t=3112)
 
