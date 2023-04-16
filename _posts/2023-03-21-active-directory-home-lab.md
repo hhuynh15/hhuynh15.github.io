@@ -36,3 +36,32 @@ For this guide I thought it would be best to demonstrate how to set up Active Di
 [Server 2019 ISO](https://www.microsoft.com/en-us/evalcenter/download-windows-server-2019)
 
 [Windows 10 ISO](https://www.microsoft.com/en-us/software-download/windows10ISO)
+
+[Random Name Generator](https://www.randomlists.com/random-names?qty=1000)
+
+# Script Used in the Video
+
+```shell
+$PASSWORD = "Password1"
+$USER_NAMES = Get-Content .\names.txt
+
+$ENCRYPTED_PASSWORD = ConvertTo-SecureString $PASSWORD -AsPlainText -Force
+New-ADOrganizationalUnit -Name _USERS -ProtectedFromAccidentalDeletion $false
+
+foreach ($n in $USER_NAMES) {
+    $first = $n.Split(" ")[0].ToLower()
+    $last = $n.Split(" ")[1].ToLower()
+    $username = "$($first.Substring(0,1))$($last)".ToLower()
+    Write-Host "Creating User: $($username)" -BackgroundColor Black -ForegroundColor Cyan
+
+    New-AdUser -AccountPassword $ENCRYPTED_PASSWORD `
+               -GivenName $first `
+               -Surname $last `
+               -DisplayName $username `
+               -Name $username `
+               -EmployeeID $username `
+               -PasswordNeverExpires $true `
+               -Path "ou=_USERS,$(([ADSI]`"").distinguishedName)" `
+               -Enabled $true
+}
+```
