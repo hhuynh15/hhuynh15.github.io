@@ -44,11 +44,12 @@ Hi, I'm Hieu Huynh and I've made this blog as a way for me to share my passion f
 ## Projects
 ---
 
-<h4> Home Server Rack | Hands-On Home Lab </h4>
-- Built a home server rack running Linux servers and VMware. Networked together with Cisco switches.
+<h4> Hands-On Home Lab | Home Server Rack Running Active Directory, VMWare, and Linux </h4>
+- Racked and stacked several servers in a home rack and networked them together with Cisco switches.
+- Configured virtual machines on servers with VMWare to support multiple operating systems at once.
 - Installed and setup Linux server running multiple game servers on individual docker containers.
 - Installed and configured server to be a network attached storage media server.
-- Configured Ubuntu server 20.04 domain settings, server name, TCP/IP settings, ad-filtered DNS, and SSH.
+- •	Configured Ubuntu and Windows server domain name, NAT, DHCP, TCP/IP, DNS, and SSH.
 
 ## Skills & Interests
 ---
