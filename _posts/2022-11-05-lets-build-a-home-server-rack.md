@@ -1,5 +1,5 @@
 ---
-title: Let’s Build a Home Server Rack
+title: Let's Build a Home Server Rack
 author:
   name: Hieu Huynh
   link: https://github.com/hhuynh15
@@ -24,15 +24,14 @@ The first step in building a home server rack is to gather the necessary hardwar
 
 - A server rack: This can be a standalone rack or a cabinet that can accommodate multiple servers and switches. The size of the rack will depend on the number of servers and switches you plan to use. For a home lab, a 10U server rack should be sufficient.
 - Servers: You can use one or multiple servers, depending on your needs. For a home lab, an Intel NUC or a small form-factor PC can work well. The servers should have sufficient RAM and storage to accommodate the virtual machines you plan to run.
-- Switches: You can use any switch but today we will be focusing on Cisco switches as they are the most commonly used switches in the industry and are a good place to start practicing routing and switching protocols. For a home lab, you can use Cisco Catalyst 2960 and if you have Juniper switches on hand you can use those as well. For the most part these switches are the same but may have different command line syntax. These switches are compact and have a limited number of ports, making them ideal for a home lab environment.
+- Switches: You can use any switch, but today we will be focusing on Cisco switches as they are the most commonly used switches in the industry and are a good place to start practicing routing and switching protocols. For a home lab, you can use Cisco Catalyst 2960. These switches are compact and have a limited number of ports, making them ideal for a home lab environment.
 - Cables: You will need Ethernet cables to connect the switches and servers to each other, and power cables to power the servers. The cables should be of the appropriate length to reach from the servers to the switches, and from the switches to the power outlets.
 
 When building your rack and racking your servers and switches. I have a few pointers for best practices:
 
-
-- Build your rack from the ground up: Stack your servers starting from the ground and place subsequent servers on top. Have your switches at the top of the rack. Larger servers will require two people to help rack and should be racked first. Don’t be afraid to ask for help.
-- Know the physical dimensions of your components: Keep in mind the length and depth of your server rack. Although most racks will allow you to adjust its dimensions. You don’t want to be rebuilding an entire rack to make a two inch adjustment.
-- Leave room to cable manage: It’s easy to want to maximize the space in your rack and not leave a lot of room in the back of your rack. But having good cable management will make it easier for you to make modifications to your rack in the future. It also allows for better ventilation for your equipment.
+- Build your rack from the ground up: Stack your servers starting from the ground and place subsequent servers on top. Have your switches at the top of the rack. Larger servers will require two people to help rack and should be racked first. Don't be afraid to ask for help.
+- Know the physical dimensions of your components: Keep in mind the length and depth of your server rack. Although most racks will allow you to adjust its dimensions. You don't want to be rebuilding an entire rack to make a two inch adjustment.
+- Leave room to cable manage: It's easy to want to maximize the space in your rack and not leave a lot of room in the back of your rack. But having good cable management will make it easier for you to make modifications to your rack in the future. It also allows for better ventilation for your equipment.
 - Have cable management accessories: Cable management accessories are great for easier cable management. I would recommend a 1U cable management unit and plenty of velcro ties. I would not recommend using zip ties as they are difficult to work with when you need to make modifications.
 
 Here is an example build from my own server rack:
@@ -48,15 +47,14 @@ For VMware, you can use vSphere, which is a virtualization platform that allows 
 
 # Configure the Switch
 
-Let’s start by connecting to our switch either through a console connection or SSH/telnet. Next enter global configuration mode by typing:
+Let's start by connecting to our switch either through a console connection or SSH/telnet. Next enter global configuration mode by typing:
 
 ```shell
 Switch> enable
 Switch#configure terminal
 ```
 
-Now let’s configure the hostname and create a new vlan for our switch:
-
+Now let's configure the hostname and create a new vlan for our switch:
 
 ```shell
 Switch(config)#hostname homelab-switch
@@ -69,7 +67,7 @@ You can give your vlan an easily recognized name like this:
 homelab-switch(config-vlan)#name public
 ```
 
-Now that we have our vlan created let’s start assigning a port to the vlan:
+Now that we have our vlan created let's start assigning a port to the vlan:
 
 ```shell
 homelab-switch(config-vlan)#exit
@@ -86,7 +84,7 @@ homelab-switch(config)#interface range FastEthernet 0/2-10
 homelab-switch(config-if)#switchport mode access
 homelab-switch(config-if)#switchport access vlan 10
 ```
-Next let’s configure an IP address to our vlan:
+Next let's configure an IP address to our vlan:
 
 ```shell
 homelab-switch(config-vlan)#exit
@@ -94,7 +92,7 @@ homelab-switch(config)#interface vlan 10
 homelab-switch(config-if)#ip address 10.10.0.2 255.255.255.0
 ```
 
-Finally, let’s enable inter-vlan routing and also make sure your configurations are correct:
+Finally, let's enable inter-vlan routing and also make sure your configurations are correct:
 
 ```shell
 homelab-switch(config-if)#exit
@@ -112,17 +110,27 @@ With the servers and switches configured, it's time to set up the virtual machin
 
 ## Virtual Machines
 
-To create virtual machines in VMware, you can use the vSphere client. It's a graphical user interface that allows you to manage virtualized environments. Here are the steps to create a virtual machine:
+To create virtual machines in VMware, you can use the vSphere client. It's a graphical user interface that allows you to manage virtualized environments. Here's a more detailed guide on how to create a virtual machine:
 
 1. Open the vSphere client and log in to the vCenter Server.
-2. Click on the "Create a new virtual machine" option in the Home screen.
-3. Select the type of virtual machine you want to create: Custom, Typical, or Instant Clone.
-4. Select the guest operating system you want to install on the virtual machine.
-5. Allocate resources such as CPU, memory, and storage to the virtual machine.
-6. Configure the network adapter for the virtual machine and connect it to a virtual switch.
-7. Customize the virtual machine with additional hardware, such as a CD/DVD drive or additional network adapters.
-8. Review the configuration options and complete the creation process.
-(go more in depth about how to set up a vm with vsphere)
+2. In the vSphere Client home page, right-click on a host or cluster and select "New Virtual Machine".
+3. Choose "Create a new virtual machine" and click "Next".
+4. Select a name for your VM and choose where to store it. Click "Next".
+5. Select the host or cluster where you want to run the VM and click "Next".
+6. Choose a datastore to store the VM files and click "Next".
+7. Select the VM compatibility and click "Next". Usually, you'll want to choose the latest version unless you have specific compatibility requirements.
+8. Choose the guest OS you'll be installing. This determines default settings for the VM.
+9. Configure the virtual hardware:
+   - CPU: Select the number of virtual CPUs.
+   - Memory: Allocate RAM to the VM.
+   - Hard disk: Create a new virtual disk or use an existing one.
+   - Network: Connect the VM to a network.
+   - CD/DVD: Connect to an ISO image to install the OS.
+10. Review your settings and click "Finish" to create the VM.
+11. Once created, power on the VM and open its console.
+12. If you connected an OS installation ISO, the VM will boot from it and you can proceed with OS installation.
+
+Remember to install VMware Tools after OS installation for better performance and integration.
 
 ## Virtual Networking
 
@@ -142,7 +150,7 @@ After setting up the virtual machines and networking, it's important to test and
 
 - Ping test: Use the `ping` command to test connectivity between the virtual machines and the physical network.
 - Traceroute: Use the `traceroute` command to determine the path taken by packets from the source to the destination.
-- VLAN Configuration: Verify that the VLANs are configured correctly on the switches by using the `show vlan` command on Cisco switches and `show interfaces [interface_name] switchport` command on Juniper switches.
+- VLAN Configuration: Verify that the VLANs are configured correctly on the switches by using the `show vlan` command on Cisco switches.
 - Firewall rules: Verify that the firewall rules are configured correctly on the virtual machines and switches.
 - Router Configuration: Verify that the routing protocols, such as OSPF and BGP, are configured correctly on the routers and switches. You can use the `show ip route` command on Cisco routers to verify the routing information.
 - Virtual Machine Configuration: Verify that the virtual machines are configured correctly and that they can communicate with each other and the physical network.
@@ -159,4 +167,5 @@ Finally, it's important to monitor and maintain the home server rack environment
 
 # Conclusion
 
-Creating a home server rack using Linux, VMware, Cisco, and Juniper technology is a great way to build a powerful and flexible computing environment. However, it requires a good understanding of virtualization, networking, and system administration technologies. By following the steps outlined in this post, you can create a home server rack yourself and learn the basics of systems administration. Having a home server rack can also come with many benefits such as having a centralized management system, improved performance, increased security, and the ability to customize the hardware and software that you use. Every home rack can be different so if you have any questions regarding your own setup, please feel free to let me know by emailing me!
+Creating a home server rack using Linux, VMware, and Cisco technology is a great way to build a powerful and flexible computing environment. However, it requires a good understanding of virtualization, networking, and system administration technologies. By following the steps outlined in this post, you can create a home server rack yourself and learn the basics of systems administration. Having a home server rack can also come with many benefits such as having a centralized management system, improved performance, increased security, and the ability to customize the hardware and software that you use. Every home rack can be different so if you have any questions regarding your own setup, please feel free to let me know by emailing me!
+
