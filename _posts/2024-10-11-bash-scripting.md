@@ -1,13 +1,13 @@
 ---
-title: Mastering Bash, Cron, and At: Essential Tools for Linux Administration
+title: You Should Automate Everything in Linux
 author:
-  name: Your Name
-  link: https://github.com/yourusername
-date: 2023-05-15 09:00:00 -0700
+  name: Hieu Huynh
+  link: https://github.com/hhuynh15
+date: 2024-10-11 09:00:00 -0700
 categories: [Linux, Administration]
 tags: [Bash, Cron, At, Scripting, Automation, Linux]
 image: 
-  src: /path-to-your-image.jpg
+  src:
   width: 1200
   height: 630
 ---
